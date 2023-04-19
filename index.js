@@ -7,6 +7,9 @@ const User = require("./models/user");
 const Teacher = require("./models/teacher");
 const Query = require("./models/query");
 
+require('dotenv').config();
+const port = process.env.port;
+
 // app.use(express.json());
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
