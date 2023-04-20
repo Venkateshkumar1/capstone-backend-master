@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const app = express();
+const PORT = process.env.PORT || 8080;
 const cors = require('cors');
 const mongoose = require("mongoose");
 const User = require("./models/user");
@@ -26,12 +27,13 @@ app.use(cors({
 const dbURI = "mongodb://0.0.0.0:27017/queryResolving"
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => {
-        app.listen(8080);
-        console.log("Node server started on port 8080");
+        app.listen(PORT, () => {
+        console.log(`Node server started on port ${PORT}`);});
         console.log("Mongo DB queryResolving connected.." + result);
     })
     .catch((err) => console.log("Error connecting DB.." + err))
     ;
+
 
 app.post("/createUser", async (req, res) => {
     console.log("createUser function execution..");
